@@ -13,15 +13,18 @@ public class AccountActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     AccountDB db;
+    //account page
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_activity);
+        //full screen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         db = new AccountDB(this);
 
+        //set up tab
         tabLayout = findViewById(R.id.tabs);
         viewPager = findViewById(R.id.view);
 

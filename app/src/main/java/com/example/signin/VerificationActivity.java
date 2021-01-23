@@ -17,7 +17,7 @@ import com.example.signin.service.AccountService;
 import static com.basgeekball.awesomevalidation.ValidationStyle.BASIC;
 
 public class VerificationActivity extends AppCompatActivity {
-
+    //Reset password page
     AccountDB db;
     FragmentManager fm;
 

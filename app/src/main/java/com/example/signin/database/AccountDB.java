@@ -15,6 +15,7 @@ public class AccountDB extends SQLiteOpenHelper {
         super(context, "Userdata.db", null, 1);
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query = "create Table user_table (name TEXT primary key, email TEXT, password TEXT)";
@@ -28,6 +29,14 @@ public class AccountDB extends SQLiteOpenHelper {
         db.execSQL(query);
 
     }
+
+    /**
+     * Add new user to data base
+     * @param name String
+     * @param email String
+     * @param password String
+     * @return true if Successfully add new user
+     */
     public boolean addUser(String name, String email, String password){
         //TODO: deal with duplicate PK
         SQLiteDatabase db = this.getWritableDatabase();
@@ -35,6 +44,7 @@ public class AccountDB extends SQLiteOpenHelper {
         contentValues.put("name", name);
         contentValues.put("email", email);
         contentValues.put("password", password);
+        //check the duplicate of username and email
         String query = "Select * from user_table where name='"+name+"'";
         String query2 = "Select * from user_table where email='"+email+"'";
         Cursor cursor = db.rawQuery(query, null);
@@ -50,16 +60,25 @@ public class AccountDB extends SQLiteOpenHelper {
             Log.d("Add new User", "Insert new user success");
             return true;
         }
-
-
-
     }
+
+    /**
+     * Get the user Records
+     * @param name String
+     * @return user Cursor
+     */
     public Cursor getUser(String name){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "Select * from user_table where name='"+name+"'";
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }
+
+    /**
+     * update Information
+     * @param name
+     * @param new_password
+     */
     public void updateUser(String name, String new_password){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "update user_table set password ='" +new_password+"' where name='"+name+"'";

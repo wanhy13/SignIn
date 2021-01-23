@@ -40,7 +40,7 @@ public class SignUpFragment extends Fragment {
         sign_button = root.findViewById(R.id.signUp);
         userName_up = root.findViewById(R.id.userName_up);
         password_up = root.findViewById(R.id.password_up);
-        checkPass = root.findViewById(R.id.comfirmPassword);
+        checkPass = root.findViewById(R.id.confirmPassword);
         email = root.findViewById(R.id.email);
 
         service = new AccountService(new AccountDB(getActivity()));
@@ -75,7 +75,7 @@ public class SignUpFragment extends Fragment {
         mAwesomeValidation.addValidation(getActivity(), R.id.userName_up, "[a-zA-Z\\s]+", R.string.invalid_username);
         mAwesomeValidation.addValidation(getActivity(), R.id.email, android.util.Patterns.EMAIL_ADDRESS, R.string.invalid_email);
         mAwesomeValidation.addValidation(getActivity(), R.id.password_up, ".{6,}", R.string.invalid_password);
-        mAwesomeValidation.addValidation(getActivity(), R.id.comfirmPassword, R.id.password_up, R.string.password_not_match);
+        mAwesomeValidation.addValidation(getActivity(), R.id.confirmPassword, R.id.password_up, R.string.password_not_match);
 
         sign_button.setOnClickListener(new View.OnClickListener() {
             @Override

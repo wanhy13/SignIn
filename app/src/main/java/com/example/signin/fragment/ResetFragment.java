@@ -47,18 +47,15 @@ public class ResetFragment extends Fragment {
         submit.setTranslationX(800);
         cancel.setTranslationX(800);
 
-
         pass1.setAlpha(v);
         pass2.setAlpha(v);
         submit.setAlpha(v);
         cancel.setAlpha(v);
 
-
         pass1.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(400).start();
         pass2.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(600).start();
         submit.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(800).start();
         cancel.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(1000).start();
-
 
         service = new AccountService(new AccountDB((getActivity())));
         Bundle budle = this.getArguments();
@@ -75,6 +72,7 @@ public class ResetFragment extends Fragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        //validate input
         super.onActivityCreated(savedInstanceState);
         AwesomeValidation mAwesomeValidation = new AwesomeValidation(BASIC);
         mAwesomeValidation.addValidation(getActivity(), R.id.password_reset, ".{6,}", R.string.invalid_password);

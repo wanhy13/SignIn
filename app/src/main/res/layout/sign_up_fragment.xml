@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/userName_up" />
 
     <EditText
-        android:id="@+id/comfirmPassword"
+        android:id="@+id/confirmPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -56,7 +56,7 @@
         android:layout_marginRight="24dp"
         android:background="@drawable/edit"
         android:ems="10"
-        android:hint="@string/comfirm_password"
+        android:hint="@string/confirm_password"
         android:inputType="textPassword"
         android:paddingLeft="20dp"
         android:paddingBottom="10dp"
@@ -81,7 +81,7 @@
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comfirmPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmPassword" />
 
     <Button
         android:id="@+id/signUp"
