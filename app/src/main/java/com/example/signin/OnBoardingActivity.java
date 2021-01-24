@@ -21,7 +21,7 @@ public class OnBoardingActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },5000);
+        },3000);
 
     }
     @Override

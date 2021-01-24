@@ -1,4 +1,7 @@
 package com.example.signin.model;
+/*
+    Our user model to access data
+ */
 
 public class User {
     private String username;

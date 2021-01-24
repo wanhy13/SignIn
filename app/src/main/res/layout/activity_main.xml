@@ -25,14 +25,26 @@
         android:id="@+id/leave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginLeft="144dp"
-        android:layout_marginEnd="174dp"
-        android:layout_marginRight="174dp"
-        android:text="Leave"
+        android:layout_marginTop="104dp"
+        android:text="@string/leave"
         app:backgroundTint="#09BFCF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gifImageView" />
+
+    <TextView
+        android:id="@+id/text_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textview"
+        android:textColor="#09BFCF"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/leave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gifImageView"
+        app:layout_constraintVertical_bias="0.273" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

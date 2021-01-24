@@ -5,7 +5,9 @@ import android.database.Cursor;
 import com.example.signin.model.User;
 
 import com.example.signin.database.AccountDB;
-
+/*
+    help function for the Account manipulate
+ */
 public class AccountService {
     AccountDB accountDB;
 

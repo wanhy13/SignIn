@@ -8,7 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
-
+/*
+    Manipulate with database
+ */
 
 public class AccountDB extends SQLiteOpenHelper {
     public AccountDB(Context context) {
@@ -20,14 +22,14 @@ public class AccountDB extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query = "create Table user_table (name TEXT primary key, email TEXT, password TEXT)";
         db.execSQL(query);
-
+        db.close();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         String query = "drop Table if exists user_table";
         db.execSQL(query);
-
+        db.close();
     }
 
     /**
@@ -50,9 +52,10 @@ public class AccountDB extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
         Cursor cursor2 = db.rawQuery(query2,null);
         if(cursor.getCount()>0 || cursor2.getCount()>0) return false;
-
+        cursor.close();
+        cursor2.close();
         long result=db.insert("user_table", null, contentValues);
-
+        db.close();
         if(result==-1){
             Log.e("Add new User", "Insert new user failed");
             return false;
@@ -84,6 +87,7 @@ public class AccountDB extends SQLiteOpenHelper {
         String query = "update user_table set password ='" +new_password+"' where name='"+name+"'";
         Log.d("updata datbase", "updateName: query: " + query);
         db.execSQL(query);
+        db.close();
     }
 
 

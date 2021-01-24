@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.example.signin.MainActivity;
 import com.example.signin.R;
 import com.example.signin.VerificationActivity;
 import com.example.signin.model.User;
@@ -23,6 +24,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import com.example.signin.database.AccountDB;
+import com.example.signin.util.SessionManager;
 
 import static android.widget.Toast.LENGTH_SHORT;
 import static com.basgeekball.awesomevalidation.ValidationStyle.BASIC;
@@ -34,6 +36,7 @@ public class SignInFragment extends Fragment {
     private EditText password;
     private TextView getPass;
     private AccountService service;
+    SessionManager sessionManager;
     float v=0;
     Dialog dialog;
     @Nullable
@@ -46,6 +49,7 @@ public class SignInFragment extends Fragment {
         getPass = root.findViewById(R.id.getPass);
         sign_button.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.button));
         service = new AccountService(new AccountDB(getActivity()));
+        sessionManager = new SessionManager(getActivity().getApplicationContext());
 
         //animation
         userName.setTranslationX(800);
@@ -78,6 +82,11 @@ public class SignInFragment extends Fragment {
                 String inputUsername = userName.getText().toString();
                 String inputPassword = password.getText().toString();
 
+                if(sessionManager.getLogin()){
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
+                }
+
                 if (!mAwesomeValidation.validate()) {
                     //Toast.makeText(getActivity(), "success", LENGTH_SHORT).show();
                 } else {
@@ -88,7 +97,12 @@ public class SignInFragment extends Fragment {
                         if (!validate(user.getPassword(), inputPassword)) {
                             Toast.makeText(getActivity(), "Wrong password", LENGTH_SHORT).show();
                         } else {
-                            welComeDialog();
+                            //welComeDialog();
+                            sessionManager.setLogin(true);
+                            sessionManager.setUsername(inputUsername);
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
+                            getActivity().finish();
                         }
                     }
 
@@ -103,19 +117,8 @@ public class SignInFragment extends Fragment {
             }
         });
     }
-    public void welComeDialog(){
-        dialog = new Dialog(getActivity());
-        dialog.setContentView(R.layout.dialog_signin);
-        dialog.setTitle("Welcome");
-        Button leave = (Button) dialog.findViewById(R.id.leave);
-        leave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.cancel();
-            }
-        });
-        dialog.show();
-    }
+
+
 
     public boolean validate(String pass1, String pass2){
         return pass1.equals(pass2);
